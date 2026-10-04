@@ -25,5 +25,20 @@
             ExpiresAt = expiresAt;
             IsActive = true;
         }
+        public void Deactivate()
+        {
+            IsActive = false;
+        }
+
+        public void Activate()
+        {
+            IsActive = true;
+        }
+
+        public bool IsExpired()
+        {
+            return ExpiresAt.HasValue &&
+                   ExpiresAt.Value <= DateTime.UtcNow;
+        }
     }
 }

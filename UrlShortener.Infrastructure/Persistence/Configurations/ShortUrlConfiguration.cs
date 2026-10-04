@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using UrlShortener.Domain.Entities;
 
-namespace UrlShortener.Infrastructure.Persistence.Configurations
+namespace UrlShortener.Infrastructure.Persistence.Configurations;
+
+public class ShortUrlConfiguration : IEntityTypeConfiguration<ShortUrl>
 {
-    internal class ShortUrlConfiguration
+    public void Configure(EntityTypeBuilder<ShortUrl> builder)
     {
+        builder.ToTable("ShortUrls");
+
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.OriginalUrl)
+            .IsRequired()
+            .HasMaxLength(2048);
+
+        builder.Property(x => x.ShortCode)
+            .IsRequired()
+            .HasMaxLength(10);
+
+        builder.HasIndex(x => x.ShortCode)
+            .IsUnique();
+
+        builder.Property(x => x.CreatedAt)
+            .IsRequired();
+
+        builder.Property(x => x.IsActive)
+            .IsRequired();
     }
 }

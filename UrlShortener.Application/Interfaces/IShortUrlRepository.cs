@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UrlShortener.Domain.Entities;
 
 namespace UrlShortener.Application.Interfaces
 {
-    internal interface IShortUrlRepository
+    public interface IShortUrlRepository
     {
+        Task AddAsync(
+        ShortUrl shortUrl,
+        CancellationToken cancellationToken = default);
+
+        Task<ShortUrl?> GetByShortCodeAsync(
+            string shortCode,
+            CancellationToken cancellationToken = default);
+
+        Task<bool> ExistsByShortCodeAsync(
+            string shortCode,
+            CancellationToken cancellationToken = default);
     }
 }

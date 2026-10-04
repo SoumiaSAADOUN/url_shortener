@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using UrlShortener.Domain.Entities;
 
-namespace UrlShortener.Infrastructure.Persistence
+namespace UrlShortener.Infrastructure.Persistence;
+
+public class AppDbContext : DbContext
 {
-    internal class AppDbContext
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
     {
+    }
+
+    public DbSet<ShortUrl> ShortUrls => Set<ShortUrl>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(
+            typeof(AppDbContext).Assembly);
     }
 }
