@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Common\Middleware\" />
     <Folder Include="URLs\Commands\CreateShortUrl\NewFolder\" />
-    <Folder Include="URLs\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,9 @@
 using FluentValidation;
-using MediatR;
 using UrlShortener.Api.Common.Behaviors;
 using UrlShortener.Api.Common.Middleware;
 using UrlShortener.Api.Endpoints;
 using UrlShortener.Application.URLs.Commands.CreateShortUrl;
+using UrlShortener.Application.URLs.Queries.GetOriginalUrl;
 using UrlShortener.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +15,7 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(
         typeof(CreateShortUrlCommand).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(GetOriginalUrlQuery).Assembly);
 
     cfg.AddOpenBehavior(
         typeof(ValidationBehavior<,>));
