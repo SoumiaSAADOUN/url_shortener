@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using MediatR;
-using UrlShortener.Application.Common.Helpers;
 using UrlShortener.Application.Interfaces;
 
 namespace UrlShortener.Application.URLs.Queries.GetOriginalUrl;

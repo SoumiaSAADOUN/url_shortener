@@ -26,7 +26,7 @@ public class CreateShortUrlCommandValidator
             .WithMessage("A valid HTTP or HTTPS URL is required.");
     }
 
- 
+
 }
 public class CreateShortUrlHandler(
     IShortUrlRepository repository,
